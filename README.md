@@ -17,6 +17,7 @@ npm run build
 | rollup  | ▉▉▉▉▉▉ 53.9 kB   |
 | esbuild | ▉▉▉▉▉▉ 59.5 kB |
 | webpack | ▉▉▉▉▉▉▉ 64.2 kB |
+| fusebox | ▉▉▉▉▉▉▉▉▉▉▉ 99.8 kB |
 | parcel  | ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 214 kB   |
 <!-- END -->
 

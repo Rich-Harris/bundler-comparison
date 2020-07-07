@@ -14,6 +14,7 @@ async function main() {
 		rollup: null,
 		webpack: null,
 		esbuild: null,
+		fusebox: null,
 		parcel: null
 	};
 	
@@ -33,6 +34,10 @@ async function main() {
 	sizes.esbuild = fs.statSync('results/esbuild.js').size;
 	console.log(`esbuild: ${pb(sizes.esbuild)}`);
 
+	await exec('node fuse-box.js');
+	sizes.fusebox = fs.statSync('results/fuse-box.js').size;
+	console.log(`fuse-box: ${pb(sizes.fusebox)}`);
+
 	const max_size = Math.max(...Object.values(sizes));
 
 	const results = `
@@ -41,6 +46,7 @@ async function main() {
 | rollup  | ${bar(sizes.rollup / max_size)} ${pb(sizes.rollup)}   |
 | esbuild | ${bar(sizes.esbuild / max_size)} ${pb(sizes.esbuild)} |
 | webpack | ${bar(sizes.webpack / max_size)} ${pb(sizes.webpack)} |
+| fusebox | ${bar(sizes.fusebox / max_size)} ${pb(sizes.fusebox)} |
 | parcel  | ${bar(sizes.parcel / max_size)} ${pb(sizes.parcel)}   |
 `.trim();
 
