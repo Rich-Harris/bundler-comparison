@@ -7,7 +7,7 @@ const pb = require('pretty-bytes');
 const exec = util.promisify(child_process.exec);
 
 const bar = (p) => {
-	return Array(Math.floor(p * 20)).fill('▉').join('');
+	return Array(Math.floor(p * 15)).fill('▉').join('');
 };
 
 async function main() {
