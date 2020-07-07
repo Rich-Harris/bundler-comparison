@@ -5,6 +5,6 @@ require('fuse-box').fusebox({
 }).runProd({
 	bundles: { 
 		distRoot: 'results',
-		app: './fuse-box.js'
+		app: './fusebox.js'
 	}
 });
