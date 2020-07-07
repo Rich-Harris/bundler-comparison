@@ -13,6 +13,7 @@ async function main() {
 	const sizes = {
 		rollup: null,
 		webpack: null,
+		esbuild: null,
 		parcel: null
 	};
 	
@@ -28,12 +29,17 @@ async function main() {
 	sizes.parcel = fs.statSync('results/parcel.js').size;
 	console.log(`parcel: ${pb(sizes.parcel)}`);
 
+	await exec('npx esbuild index.js --bundle --outfile=results/esbuild.js --minify --format=cjs --platform=node');
+	sizes.esbuild = fs.statSync('results/esbuild.js').size;
+	console.log(`esbuild: ${pb(sizes.esbuild)}`);
+
 	const max_size = Math.max(...Object.values(sizes));
 
 	const results = `
 |         | output size                                           |
 |---------|-------------------------------------------------------|
 | rollup  | ${bar(sizes.rollup / max_size)} ${pb(sizes.rollup)}   |
+| esbuild | ${bar(sizes.esbuild / max_size)} ${pb(sizes.esbuild)} |
 | webpack | ${bar(sizes.webpack / max_size)} ${pb(sizes.webpack)} |
 | parcel  | ${bar(sizes.parcel / max_size)} ${pb(sizes.parcel)}   |
 `.trim();
