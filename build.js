@@ -18,12 +18,15 @@ async function main() {
 	
 	await exec('npx rollup -c');
 	sizes.rollup = fs.statSync('results/rollup.js').size;
+	console.log(`rollup: ${pb(sizes.rollup)}`);
 
 	await exec('npx webpack -c');
 	sizes.webpack = fs.statSync('results/webpack.js').size;
+	console.log(`webpack: ${pb(sizes.webpack)}`);
 
 	await exec('npx parcel build -d results -o parcel.js -t node index.js');
 	sizes.parcel = fs.statSync('results/parcel.js').size;
+	console.log(`parcel: ${pb(sizes.parcel)}`);
 
 	const max_size = Math.max(...Object.values(sizes));
 
@@ -37,6 +40,8 @@ async function main() {
 
 	const README = fs.readFileSync('README.md', 'utf-8').replace(/<!-- START -->[\s\S]+<!-- END -->/m, `<!-- START -->\n${results}\n<!-- END -->`);
 	fs.writeFileSync('README.md', README);
+
+	console.log(`wrote results to README.md`);
 }
 
 main();

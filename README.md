@@ -4,6 +4,7 @@ A quick test to see how various bundlers compare when bundling the Lodash source
 
 ```
 git clone git@github.com:Rich-Harris/bundler-comparison.git
+git submodule update --init --recursive
 npm i
 npm run build
 ```
