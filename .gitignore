@@ -1,2 +1,4 @@
 node_modules
 .cache
+results/manifest-node.json
+*.gz
